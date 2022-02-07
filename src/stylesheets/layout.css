@@ -1,3 +1,10 @@
+.header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 2;
+}
 .navbar{
     background-color: #003F5C !important ;
 }
@@ -7,4 +14,17 @@
 }
 .nav-link{
     color: white !important;
+}
+.content{
+padding-top: 80px;
+}
+.footer{
+    padding: 10px;
+    text-align: center;
+    background-color: #003f5C;
+    color: white;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
 }
