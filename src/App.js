@@ -6,13 +6,27 @@ import {
   Routes,
   Route
 } from "react-router-dom";
+import LoginPage from './pages/LoginPage';
+import RegisterPage from './pages/RegisterPage';
+import ProductInfo from './pages/ProductInfo';
+import CartPage from './pages/CartPage';
 
 function App() {
   return (
     <div className="App">
-     <h1>Web-shop</h1>
-     <Homepage />
-     <button className='btn btn-primary'>BootStrap Btn</button>
+      
+     <BrowserRouter>
+    <Routes>
+      <Route path="/" exact element={<Homepage />}/>
+       
+        <Route path="/login" exact element={<LoginPage/>} />
+          <Route path="/register" exact element={<RegisterPage/>} />
+          <Route path="/productinfo"  exact element={<ProductInfo/>} />
+          <Route path="/cart" exact element={<CartPage/>} />
+      
+     
+    </Routes>
+  </BrowserRouter>
     </div>
   );
 }
