@@ -2,6 +2,7 @@ import React from "react";
 import Layout from "../components/Layout";
 import { collection, addDoc, getDocs } from "firebase/firestore";
 import fireDB from "../fireConfig";
+import { fireproducts } from "../firecommerce-products";
 
 function Homepage() {
   async function addData() {
@@ -32,6 +33,8 @@ function Homepage() {
       console.log(error);
     }
   }
+
+  
   return (
     <Layout>
       <h1>Home</h1>
@@ -39,6 +42,7 @@ function Homepage() {
       <button onClick={addData}>Add data to firebase</button>
 
       <button onClick={getData}>Get data from firebase</button>
+     
     </Layout>
   );
 }
