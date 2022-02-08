@@ -30,3 +30,14 @@ padding-top: 80px;
 }
 
 /* styling for buttons */
+
+button{
+    background-color: #003f5C;
+    box-shadow: none;
+    border: 1px solid rgb(255, 255, 255, 0.692);
+    color: white;
+    padding: 5px;
+}
+button:hover{
+    background-color: tomato;
+}

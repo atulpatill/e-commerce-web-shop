@@ -49,7 +49,7 @@ function Homepage() {
             <div className="product-actions">
               <h2>{product.price} Rs/-</h2>
               <div className="d-flex">
-                <button>ADD TO CART</button>
+                <button className="mx-2">ADD TO CART</button>
                 <button>VIEW</button>
                 </div>
             </div>
