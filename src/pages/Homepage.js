@@ -3,9 +3,11 @@ import Layout from "../components/Layout";
 import { collection, addDoc, getDocs } from "firebase/firestore";
 import fireDB from "../fireConfig";
 import { fireproducts } from "../firecommerce-products";
+import { useNavigate } from "react-router-dom";
 
 function Homepage() {
   
+     const navigate = useNavigate()
   const [products , setproducts] = useState([])
 
   useEffect(()=>{
@@ -50,7 +52,7 @@ function Homepage() {
               <h2>{product.price} Rs/-</h2>
               <div className="d-flex">
                 <button className="mx-2">ADD TO CART</button>
-                <button>VIEW</button>
+                <button onClick={()=>navigate(`productinfo/${product.id}`)}>VIEW</button>
                 </div>
             </div>
             </div>
