@@ -39,10 +39,20 @@ function Homepage() {
         {products.map(product=>{
           return <div className="col-md-4" key={product.id}>
 
-            <div className="m-2 p-1 product">
-              <p>{product.name}</p>
+            <div className="m-2 p-1 product position-relative">
+            <div className="product-content">
+            <p>{product.name}</p>
+              <div className="text-center">
               <img src={product.imageURL} alt ="" className="product-img" />
-
+              </div>
+            </div>
+            <div className="product-actions">
+              <h2>{product.price} Rs/-</h2>
+              <div className="d-flex">
+                <button>ADD TO CART</button>
+                <button>VIEW</button>
+                </div>
+            </div>
             </div>
           </div>
         })}
