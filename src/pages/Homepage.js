@@ -1,48 +1,56 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Layout from "../components/Layout";
 import { collection, addDoc, getDocs } from "firebase/firestore";
 import fireDB from "../fireConfig";
 import { fireproducts } from "../firecommerce-products";
 
 function Homepage() {
-  async function addData() {
-    try {
-      await addDoc(collection(fireDB, "users"), {
-        name: "krishna",
-        age: 125,
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  }
+  
+  const [products , setproducts] = useState([])
+
+  useEffect(()=>{
+    getData()
+  },[])
 
   async function getData() {
     try {
-      const users = await getDocs(collection(fireDB, "users"));
-      const usersArray = [];
+      const users = await getDocs(collection(fireDB, "products"));
+      const productsArray = [];
       users.forEach((doc) => {
-        // console.log(doc.id, " => ", doc.data());
+     
         const obj = {
           id: doc.id,
           ...doc.data(),
         };
-        usersArray.push(obj);
+        productsArray.push(obj);
       });
-      console.log(usersArray);
+     setproducts(productsArray)
     } catch (error) {
       console.log(error);
     }
   }
-
+   
   
   return (
     <Layout>
-      <h1>Home</h1>
-
-      <button onClick={addData}>Add data to firebase</button>
-
-      <button onClick={getData}>Get data from firebase</button>
      
+    <div className="container">
+      <div className="row">
+        {products.map(product=>{
+          return <div className="col-md-4" key={product.id}>
+
+            <div className="m-2 p-1 product">
+              <p>{product.name}</p>
+              <img src={product.imageURL} alt ="" className="product-img" />
+
+            </div>
+          </div>
+        })}
+      </div>
+
+    </div>
+
+      
     </Layout>
   );
 }
