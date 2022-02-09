@@ -4,10 +4,15 @@ import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import Loader from "../components/Loader";
 import { toast } from "react-toastify";
 
-const auth = getAuth();
+
 
 function RegisterPage() {
-  const [loading, setLoading] = useState(false) 
+  const [email, setEmail] = useState()
+  const [password, setPassword] = useState()
+  const [cPassword, setCPassword] = useState() 
+  const [loading, setLoading] = useState(false)
+  
+  const auth = getAuth();
   const register =async ()=>{
       try{
         setLoading(true)
@@ -21,9 +26,7 @@ function RegisterPage() {
      setLoading(false)
       }
   }
-  const [email, setEmail] = useState()
-  const [password, setPassword] = useState()
-  const [cPassword, setCPassword] = useState() 
+ 
   return (
     <div className="register-parent">
       {loading && <Loader />}
