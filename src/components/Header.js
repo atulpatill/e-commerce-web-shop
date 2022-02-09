@@ -5,6 +5,9 @@ import {FaBars, FaCartPlus} from 'react-icons/fa'
 import { useSelector } from "react-redux";
 
 function Header() {
+
+  const {user} = JSON.parse(localStorage.getItem('currentUser'))
+
   const {cartItems} = useSelector(state => state.cartReducer)
   return (
     <div className="header">
@@ -28,7 +31,7 @@ function Header() {
             <ul className="navbar-nav ms-auto">
               <li className="nav-item">
                 <Link className="nav-link active" aria-current="page" to="/">
-                  users
+                  {user.email.substring(0, user.email.length-10)}
                 </Link>
               </li>
               <li className="nav-item">

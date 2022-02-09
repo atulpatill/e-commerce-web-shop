@@ -19,8 +19,12 @@ function LoginPage() {
         email,
         password
       );
-      toast.success("Login Successful");
+      localStorage.setItem('currentUser', JSON.stringify(result))
+   
       setLoading(false);
+      toast.success("Login Successful");
+      window.location.href='/'
+
     } catch (error) {
       console.log(error);
       toast.error("Login Failed");
