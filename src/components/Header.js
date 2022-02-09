@@ -6,6 +6,11 @@ import { useSelector } from "react-redux";
 
 function Header() {
 
+
+  const logout =() =>{
+    localStorage.removeItem('currentUser')
+    window.location.reload()
+  }
   const {user} = JSON.parse(localStorage.getItem('currentUser'))
 
   const {cartItems} = useSelector(state => state.cartReducer)
@@ -40,7 +45,7 @@ function Header() {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/">
+                <Link className="nav-link" to="/" onClick={logout}>
                   logout
                 </Link>
               </li>
