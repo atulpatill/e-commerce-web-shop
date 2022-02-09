@@ -1,12 +1,32 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import Loader from "../components/Loader";
+import { toast } from "react-toastify";
+
+const auth = getAuth();
 
 function RegisterPage() {
+  const [loading, setLoading] = useState(false) 
+  const register =async ()=>{
+      try{
+        setLoading(true)
+       const result = await createUserWithEmailAndPassword(auth, email, password)
+       toast.success('Registration Successful')
+       setLoading(false)
+      }catch(error){
+  
+     console.log(error)
+     toast.error('Registration Failed')
+     setLoading(false)
+      }
+  }
   const [email, setEmail] = useState()
   const [password, setPassword] = useState()
   const [cPassword, setCPassword] = useState() 
   return (
     <div className="register-parent">
+      {loading && <Loader />}
       <div className="register-top">
 
       </div>
@@ -29,7 +49,7 @@ function RegisterPage() {
             <input type="password" className="form-control" placeholder="Password" value={password} onChange={(e)=>setPassword(e.target.value)} />
              <input type="password" className="form-control" placeholder="Confirm Password" value={cPassword} onChange={(e)=>setCPassword(e.target.value)} />
 
-             <button className="my-3">Register</button>
+             <button className="my-3" onClick={register}>Register</button>
 
              <hr/>
              <Link to='/login'>Click here to Login</Link>
