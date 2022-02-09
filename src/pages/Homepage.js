@@ -7,6 +7,8 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 function Homepage() {
+
+  const [loading, setLoading] = useState(false) 
   const {cartItems} = useSelector(state => state.cartReducer)
 
  const navigate = useNavigate()
@@ -29,7 +31,9 @@ function Homepage() {
   },[])
 
   async function getData() {
+    
     try {
+      setLoading(true)
       const users = await getDocs(collection(fireDB, "products"));
       const productsArray = [];
       users.forEach((doc) => {
@@ -39,16 +43,18 @@ function Homepage() {
           ...doc.data(),
         };
         productsArray.push(obj);
+        setLoading(false)
       });
      setproducts(productsArray)
     } catch (error) {
       console.log(error);
+      setLoading(false)
     }
   }
    
   
   return (
-    <Layout>
+    <Layout loading={loading}>
      
     <div className="container">
       <div className="row">
