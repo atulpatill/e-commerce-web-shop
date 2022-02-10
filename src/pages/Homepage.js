@@ -9,8 +9,8 @@ import { useDispatch, useSelector } from "react-redux";
 function Homepage() {
   const [loading, setLoading] = useState(false);
   const { cartItems } = useSelector((state) => state.cartReducer);
-  const [searchKey, setSearchKey] = useState('');
-  const [filterType, setFilterType] = useState('');
+  const [searchKey, setSearchKey] = useState("");
+  const [filterType, setFilterType] = useState("");
   const navigate = useNavigate();
   const [products, setproducts] = useState([]);
   const dispatch = useDispatch();
@@ -53,16 +53,16 @@ function Homepage() {
   return (
     <Layout loading={loading}>
       <div className="container">
-        <div className="d-flex w-50">
+        <div className="d-flex w-50 align-items-center my-3 justify-content-center">
           <input
             type="text"
             value={searchKey}
             onChange={(e) => setSearchKey(e.target.value)}
-            className="form-control"
+            className="form-control mx-2"
             placeholder="search items"
           />
           <select
-            className="form-control"
+            className="form-control mt-3"
             value={filterType}
             onChange={(e) => setFilterType(e.target.value)}
           >
