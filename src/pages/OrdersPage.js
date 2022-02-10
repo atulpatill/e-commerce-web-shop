@@ -34,10 +34,11 @@ function OrdersPage() {
   }
 
   return (
-    <Layout loading={loading}>
-      {orders.map((order) => {
+    <Layout loading={loading} >
+     <div className="p-2">
+     {orders.map((order) => {
           return (
-        <table className="table mt-3">
+        <table className="table mt-3 order">
           <thead>
             <tr>
               <th>Image</th>
@@ -61,6 +62,7 @@ function OrdersPage() {
         </table>
           )
       })}
+     </div>
     </Layout>
   );
 }
