@@ -67,7 +67,7 @@ function Homepage() {
             onChange={(e) => setFilterType(e.target.value)}
           >
             <option value="">All</option>
-            <option value="electronics">Eletronics</option>
+            <option value="electronics">Electronics</option>
             <option value="fashion">Fashion</option>
             <option value="mobiles">Mobiles</option>
           </select>
