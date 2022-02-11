@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Layout from '../components/Layout'
-import { collection, addDoc, getDocs, setDoc, doc} from "firebase/firestore";
+import { collection, addDoc, getDocs, setDoc, doc, deleteDoc} from "firebase/firestore";
 import fireDB from "../fireConfig";
 import { FaEdit, FaTrash } from 'react-icons/fa';
 import { Modal } from "react-bootstrap";
@@ -94,6 +94,20 @@ function AdminPage() {
     }
 
   }
+
+  const deleteProduct = async (item) =>{
+   try {
+     setLoading(true)
+    await deleteDoc(doc(fireDB, "products", item.id));
+    setLoading(false)
+    getData()
+    toast.success("Product deleted successfully")
+   
+   } catch (error) {
+     toast.error("Action Failed")
+     setLoading(false)
+   }
+  }
   
   return (
     <Layout loading={loading}>
@@ -125,7 +139,8 @@ function AdminPage() {
                 <td>
                   <FaTrash 
                   color="red"
-                  size={20} />
+                  size={20}
+                  onClick={()=>deleteProduct(item)} />
                   <FaEdit
                   color="blue"
                   size={20} 
