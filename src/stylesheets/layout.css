@@ -65,3 +65,6 @@ input , select{
 .nav-item button{
     color: black !important;
 }
+.nav-tabs{
+    background-color: aliceblue;
+}

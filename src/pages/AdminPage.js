@@ -140,7 +140,7 @@ function AdminPage() {
   return (
     <Layout loading={loading}>
       <Tabs
-        defaultActiveKey="profile"
+        defaultActiveKey="Products"
         id="uncontrolled-tab-example"
         className="mb-3"
       >
@@ -197,7 +197,7 @@ function AdminPage() {
             <Modal.Body>
               {" "}
               <div className="register-form">
-                <h2>Register</h2>
+                <h2>Put Details</h2>
                 <hr />
                 <input
                   type="text"
