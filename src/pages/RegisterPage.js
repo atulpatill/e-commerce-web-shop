@@ -18,7 +18,9 @@ function RegisterPage() {
         setLoading(true)
        const result = await createUserWithEmailAndPassword(auth, email, password)
        toast.success('Registration Successful')
+       window.location.href='/'
        setLoading(false)
+       
       }catch(error){
   
      console.log(error)

@@ -8,6 +8,7 @@ function OrdersPage() {
 
   const [orders, setOrders] = useState([]);
 
+  const userid = JSON.parse(localStorage.getItem("currentUser", )).user.uid
   useEffect(() => {
     getData();
   }, []);
@@ -36,7 +37,8 @@ function OrdersPage() {
   return (
     <Layout loading={loading} >
      <div className="p-2">
-     {orders.map((order) => {
+       
+     {orders.filter(obj => obj.userid===userid).map((order) => {
           return (
         <table className="table mt-3 order">
           <thead>
