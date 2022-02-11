@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import Layout from '../components/Layout'
-import { collection, addDoc, getDocs } from "firebase/firestore";
+import { collection, addDoc, getDocs, setDoc, doc} from "firebase/firestore";
 import fireDB from "../fireConfig";
 import { FaEdit, FaTrash } from 'react-icons/fa';
 import { Modal } from "react-bootstrap";
+import { toast } from 'react-toastify';
 
 
 function AdminPage() {
     const [products, setproducts] = useState([]);
     const [loading, setLoading] = useState(false);
+
+    const [add, setAdd] = useState(false)
 
     const [product, setProduct] = useState({
       name : "",
@@ -52,9 +55,53 @@ function AdminPage() {
 
     setShow(true)
   }
+
+  const updateProduct = async() =>{
+    try {
+      setLoading(true)
+       await setDoc(doc(fireDB, "products", product.id), product)
+      //  setLoading(false)
+      // getData()
+     handleClose()
+       toast.success("Product Updated Succesfully")
+       window.location.reload()
+
+    } catch (error) {
+      console.log(error)
+      toast.error("Product Update Failed")
+      setLoading(false)
+    }
+
+  }
+
+  const addHandler = () =>{
+    setAdd(true)
+    handleShow()
+  }
+  const addProduct = async() =>{
+    try {
+      setLoading(true)
+       await addDoc(collection(fireDB, "products"), product)
+      //  setLoading(false)
+      // getData()
+     handleClose()
+       toast.success("Product added Succesfully")
+   window.location.reload()
+    } catch (error) {
+      console.log(error)
+      toast.error("Action Failed")
+      setLoading(false)
+    }
+
+  }
+  
   return (
     <Layout loading={loading}>
-        <h3>Product List</h3>
+      <div className='d-flex justify-content-between'>
+      <h3 >Product List</h3>
+        <button onClick={addHandler}>ADD PRODUCT</button>
+      </div>
+     
         <table className="table mt-3">
         <thead>
           <tr>
@@ -91,7 +138,7 @@ function AdminPage() {
       </table>
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Add your address</Modal.Title>
+          <Modal.Title>{add ? "Add a Product" : "Edit Product" }</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           {" "}
@@ -132,8 +179,8 @@ function AdminPage() {
           </div>
         </Modal.Body>
         <Modal.Footer>
-          <button >CLOSE</button>
-          <button >SAVE</button>
+          <button onClick={handleClose}>CLOSE</button>
+         {add ? ( <button onClick={addProduct}>SAVE</button>) : ( <button onClick={updateProduct}>SAVE</button>)}
         </Modal.Footer>
       </Modal>
     </Layout>
