@@ -58,7 +58,7 @@ function CartPage() {
   useEffect(() => {
     let temp = 0;
     cartItems.forEach((cartItems) => {
-      temp = temp + cartItems.price;
+      temp = Number(temp) + Number(cartItems.price);
     });
     setTotalAmout(temp);
   }, [cartItems]);
@@ -103,7 +103,7 @@ function CartPage() {
       </table>
 
       <div className="d-flex justify-content-end">
-        <h1 className="total-amount">Total Amount => {totalAmount}Rs/-</h1>
+        <h1 className="total-amount">Total Amount = {(totalAmount)}Rs/-</h1>
       </div>
       <div className="d-flex justify-content-end mt-3">
         <button onClick={handleShow}>PLACE ORDER</button>
