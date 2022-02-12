@@ -17,11 +17,12 @@ function RegisterPage() {
       try{
         setLoading(true)
        const result = await createUserWithEmailAndPassword(auth, email, password)
-       toast.success('Registration Successful')
+    
        setEmail('')
        setPassword('')
        setCPassword('')
        window.location.href='/'
+       toast.success('Registration Successful')
        setLoading(false)
        
       }catch(error){

@@ -9,6 +9,7 @@ function Header() {
 
   const logout =() =>{
     localStorage.removeItem('currentUser')
+    localStorage.removeItem('cartItems')
     window.location.reload()
   }
   const {user} = JSON.parse(localStorage.getItem('currentUser'))
