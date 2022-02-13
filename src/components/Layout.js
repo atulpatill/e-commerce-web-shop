@@ -5,7 +5,7 @@ import Loader from "./Loader";
 
 function Layout(props) {
   return (
-    <div>
+    <div >
       {props.loading && <Loader />}
       <Header />
       <div className="content">{props.children}</div>
