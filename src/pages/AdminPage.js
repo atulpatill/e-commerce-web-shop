@@ -21,9 +21,10 @@ function AdminPage() {
 
   const [product, setProduct] = useState({
     name: "",
-    price: 0,
+    price: "",
     imageURL: "",
-    category: " ",
+    category: "",
+    description: "",
   });
 
   const [show, setShow] = useState(false);
@@ -130,7 +131,7 @@ function AdminPage() {
         setLoading(false);
       });
       setOrders(ordersArray);
-      console.log(ordersArray)
+      console.log(ordersArray);
     } catch (error) {
       console.log(error);
       setLoading(false);
@@ -145,7 +146,6 @@ function AdminPage() {
         className="mb-3"
       >
         <Tab eventKey="Products" title="Products">
-      
           <div className="d-flex justify-content-between">
             <h3>Product List</h3>
             <button onClick={addHandler}>ADD PRODUCT</button>
@@ -202,7 +202,7 @@ function AdminPage() {
                 <input
                   type="text"
                   className="form-control"
-                  placeholder="Name"
+                  placeholder="Name of a Product"
                   value={product.name}
                   onChange={(e) =>
                     setProduct({ ...product, name: e.target.value })
@@ -219,9 +219,9 @@ function AdminPage() {
                   }
                 />
                 <input
-                  type="number"
+                  type="text"
                   className="form-control"
-                  placeholder="Price"
+                  placeholder="Price of Product"
                   value={product.price}
                   onChange={(e) =>
                     setProduct({ ...product, price: e.target.value })
@@ -230,10 +230,19 @@ function AdminPage() {
                 <input
                   type="text"
                   className="form-control"
-                  placeholder="Category"
+                  placeholder= "category"
                   value={product.category}
                   onChange={(e) =>
                     setProduct({ ...product, category: e.target.value })
+                  }
+                />
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="description"
+                  value={product.description}
+                  onChange={(e) =>
+                    setProduct({ ...product, description: e.target.value })
                   }
                 />
 
@@ -253,32 +262,36 @@ function AdminPage() {
         <Tab eventKey="orders" title="Orders">
           <h3>Orders</h3>
           {orders.map((order) => {
-          return (
-        <table className="table mt-3 order">
-          <thead>
-            <tr>
-              <th>Image</th>
-              <th>Name</th>
-              <th>Price</th>
-            </tr>
-          </thead>
-          <tbody>
-            {order.cartItems.map((item) => {
-              return (
-                <tr>
-                  <td>
-                    <img src={item.imageURL} alt="" height="80" width="80" />
-                  </td>
-                  <td>{item.name}</td>
-                  <td>{item.price}</td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
-          )
-      })}
- 
+            return (
+              <table className="table mt-3 order">
+                <thead>
+                  <tr>
+                    <th>Image</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {order.cartItems.map((item) => {
+                    return (
+                      <tr>
+                        <td>
+                          <img
+                            src={item.imageURL}
+                            alt=""
+                            height="80"
+                            width="80"
+                          />
+                        </td>
+                        <td>{item.name}</td>
+                        <td>{item.price}</td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            );
+          })}
         </Tab>
       </Tabs>
     </Layout>
